@@ -21,12 +21,14 @@ class LinkedList {
   /** push(val): add new value to end of list. */
 
   push(val) {
+  	const newNode = new Node(val);
+  
 	if(this.head === null){
-		this.head = new Node(val);
-		this.tail = this.head;
+		this.head = newNode;
+		this.tail = newNode;
 		this.length++;
 	}else{
-		this.tail.next = new Node(val); //set old tail to new tail
+		this.tail.next = newNode; //set old tail to new tail
 		this.tail = this.tail.next; //update tail
 		this.length++;
 	}
@@ -35,7 +37,7 @@ class LinkedList {
   /** unshift(val): add new value to start of list. */
 
   unshift(val) {
-  const newNode = new Node(val);
+  	const newNode = new Node(val);
 		
     newNode.next = this.head;
     this.head = newNode;
@@ -57,13 +59,33 @@ class LinkedList {
   /** getAt(idx): get val at idx. */
 
   getAt(idx) {
-
+	let currNode = this.head;
+    let currIdx = 0;
+    if(currNode === null || idx >= this.length || idx < 0) return `idx out of range`
+    while(idx < this.length){
+    	if(currIdx === idx) return currNode.val;
+      
+      currNode = currNode.next;
+      currIdx++;
+      
+    }
   }
-
   /** setAt(idx, val): set val at idx to val */
 
   setAt(idx, val) {
-
+	let currNode = this.head;
+    let currIdx = 0;
+    if(currNode === null || idx >= this.length || idx < 0) return `idx out of range`
+    while(idx < this.length){
+    	if(currIdx === idx){
+      	 currNode.val = val;
+         return;
+      }
+      
+      currNode = currNode.next;
+      currIdx++;
+      
+    }
   }
 
   /** insertAt(idx, val): add node w/val before idx. */
