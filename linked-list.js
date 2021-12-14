@@ -17,6 +17,21 @@ class LinkedList {
 
     for (let val of vals) this.push(val);
   }
+	
+	/** _getAt(idx): return node at idx. */
+
+  _getAt(idx) {
+	let currNode = this.head;
+    let currIdx = 0;
+    if(currNode === null || idx >= this.length || idx < 0) return `idx out of range`
+    while(idx < this.length){
+    	if(currIdx === idx) return currNode;
+      
+      currNode = currNode.next;
+      currIdx++;
+      
+    }
+  }
 
   /** push(val): add new value to end of list. */
 
