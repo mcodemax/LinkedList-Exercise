@@ -47,13 +47,32 @@ class LinkedList {
   /** pop(): return & remove last item. */
 
   pop() {
-
+	
   }
 
   /** shift(): return & remove first item. */
 
   shift() {
+	const shiftedNode = this.head;
 
+	if(this.length === 0) return 'LinkedList Empty';
+    
+    if(this.length === 1){
+      this.head = null;
+      this.tail = null;
+      length--;
+      
+      return shiftedNode;
+    }
+    
+    this.head = shiftedNode.next;
+		shiftedNode.next = null;
+    
+    if(this.head.next === null) this.tail = this.head; //if only 1 node left
+    
+    this.length--;
+    
+    return shiftedNode;
   }
 
   /** getAt(idx): get val at idx. */
