@@ -22,9 +22,13 @@ class LinkedList {
 
   push(val) {
 	if(this.head === null){
-		this.tail = new Node
+		this.head = new Node(val);
+		this.tail = this.head;
 		this.length++;
-	}else if(this.tail){
+	}else{
+		this.tail.next = new Node(val); //set old tail to new tail
+		this.tail = this.tail.next; //update tail
+		this.length++;
 	}
   }
 
@@ -76,5 +80,8 @@ class LinkedList {
     
   }
 }
+
+const lo = new LinkedList([1,2,3]);
+console.log(lo.head.val, lo.head.next.val, lo.tail.val)
 
 module.exports = LinkedList;
