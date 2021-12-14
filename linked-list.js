@@ -125,7 +125,11 @@ class LinkedList {
   /** insertAt(idx, val): add node w/val before idx. */
 
   insertAt(idx, val) {
-
+	if(idx < 0 || idx >= this.length) return 'idx out of range';
+    
+		const prevIdx = idx === 0 ? 0 : idx - 1; //if === 0, set to 0
+    const nextIdx = nextIdx === this.length - 1 ? this.length - 1 : idx + 1;
+    const 
   }
 
   /** removeAt(idx): return & remove item at idx, */
