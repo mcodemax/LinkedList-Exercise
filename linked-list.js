@@ -125,11 +125,34 @@ class LinkedList {
   /** insertAt(idx, val): add node w/val before idx. */
 
   insertAt(idx, val) {
-	if(idx < 0 || idx >= this.length) return 'idx out of range';
+  	const newNode = new Node(val);
+  	if(idx < 0 || idx >= this.length) return 'idx out of range';
     
-		const prevIdx = idx === 0 ? 0 : idx - 1; //if === 0, set to 0
-    const nextIdx = nextIdx === this.length - 1 ? this.length - 1 : idx + 1;
-    const 
+		const prevIdx = idx <= 0 ? 0 : idx - 1; //if === 0, set to 0
+    const nextIdx = idx >= this.length - 1 ? this.length - 1 : idx + 1;
+    //const 
+    const prevNode = this._getAt(prevIdx);
+    const nextNode = this._getAt(nextIdx);
+    
+    //if nextNode =(obj comparison) prevNode > do something
+    //implement edge case later
+    
+    prevNode.next = newNode;	//for tail edge case do something
+    newNode.next = nextNode;    
+    this.length++;
+    //need refactor for head edge case, tail edge case(maybe), and 1 element in list edge case
+    
+    function addLater(){//for edge case inserting at head, and length = 1;
+    	this.head = newNode;
+      this.head.next = this._getAt(0);
+      this.length++;
+    }
+    
+    function addLater2(){//for edge case inserting into empty linkedlist
+    	this.head = newNode;
+      this.tail = newNode;
+      this.length++;
+    }
   }
 
   /** removeAt(idx): return & remove item at idx, */
