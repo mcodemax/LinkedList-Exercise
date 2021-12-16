@@ -185,7 +185,7 @@ class LinkedList {
   /** removeAt(idx): return & remove item at idx, */
 
   removeAt(idx) {//not working for [1,2] ll,  input: idx = 0
-		if(idx < 0 || idx >= this.length) return 'idx out of range'; //doesn't work with empty linkedlist
+	if(idx < 0 || idx >= this.length) return 'idx out of range'; //doesn't work with empty linkedlist
     
     const prevIdx = idx <= 0 ? 0 : idx - 1; //if === 0, set to 0
     const nextIdx = idx >= this.length - 1 ? this.length - 1 : idx + 1;
@@ -209,6 +209,13 @@ class LinkedList {
       return;
     }
     
+    if(idx === 0){
+    	this.head = nextNode;
+      this.length--;
+      return;
+    }
+    
+    prevNode.next = nextNode;
     this.length--; //regular case of linkedlist length > 1
     
   }
