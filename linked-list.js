@@ -222,8 +222,19 @@ class LinkedList {
 
   /** average(): return an average of all values in the list */
 
-  average() {
-    
+   average() {
+    let currNode = this.head;
+    let currIdx = 0;
+		let sum = 0;
+    if(this.length === 0) return `Linked List is empty`
+    while(currIdx < this.length){
+			sum+=currNode.val;
+      
+     	currNode = currNode.next;
+			currIdx++;
+     }
+
+	return sum / this.length;
   }
 }
 
