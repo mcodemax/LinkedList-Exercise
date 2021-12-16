@@ -184,8 +184,33 @@ class LinkedList {
 	
   /** removeAt(idx): return & remove item at idx, */
 
-  removeAt(idx) {
-
+  removeAt(idx) {//not working for [1,2] ll,  input: idx = 0
+		if(idx < 0 || idx >= this.length) return 'idx out of range'; //doesn't work with empty linkedlist
+    
+    const prevIdx = idx <= 0 ? 0 : idx - 1; //if === 0, set to 0
+    const nextIdx = idx >= this.length - 1 ? this.length - 1 : idx + 1;
+    
+    const prevNode = this._getAt(prevIdx);
+    const nextNode = this._getAt(nextIdx); //returns idx out of range if removing last ele, see getAt() defn
+    
+    if(this.length === 1){
+    	this.head = null;
+      this.tail = null;
+      this.length--;
+      
+      return;
+    }
+    
+    if(idx === this.length - 1){//edge case for removing last ele in list
+    	this.tail = prevNode;
+      prevNode.next = null;
+      this.length--;
+      
+      return;
+    }
+    
+    this.length--; //regular case of linkedlist length > 1
+    
   }
 
   /** average(): return an average of all values in the list */
