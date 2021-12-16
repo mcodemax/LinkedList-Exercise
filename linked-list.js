@@ -155,12 +155,16 @@ class LinkedList {
     	this.head = newNode;
       this.head.next = this._getAt(0);
       this.length++;
+      
+      return;
     }
     
     if(this.length === 0){//for edge case inserting into empty linkedlist; **
     	this.head = newNode;
       this.tail = newNode;
       this.length++;
+      
+      return;
     }
     
 		const prevIdx = idx <= 0 ? 0 : idx - 1; //if === 0, set to 0
@@ -177,7 +181,7 @@ class LinkedList {
     this.length++;
     
   }
-
+	
   /** removeAt(idx): return & remove item at idx, */
 
   removeAt(idx) {
