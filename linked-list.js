@@ -61,9 +61,24 @@ class LinkedList {
 
   /** pop(): return & remove last item. */
 
-  pop() {
-	
-  }
+	pop() {
+		if(this.head === null || this.length === 0) return `Empty Linked List`;
+
+		if(this.length === 1){ //if only 1 ele in list
+			const remNode = this.head;
+			this.head = null;
+			this.tail = null;
+			this.length = 0;
+			return remNode;
+		}
+
+		const removedNode = this.tail;
+		const endNode = this._getAt(this.length - 2);
+		this.tail = endNode;
+		this.length--;
+
+		return removedNode;
+ 	 }
 
   /** shift(): return & remove first item. */
 
