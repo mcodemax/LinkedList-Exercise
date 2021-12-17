@@ -70,7 +70,7 @@ class LinkedList {
   /** pop(): return & remove last item. */
 
 	pop() {
-		if(this.head === null || this.length === 0) return `Empty Linked List`;
+		if(this.head === null || this.length === 0) throw new Error(`Empty Linked List`);
 
 		if(this.length === 1){ //if only 1 ele in list
 			const remNode = this.head;
@@ -93,7 +93,7 @@ class LinkedList {
   shift() {
 	const shiftedNode = this.head;
 
-	if(this.length === 0) return 'LinkedList Empty';
+	if(this.length === 0) throw new Error('LinkedList Empty');
     
     if(this.length === 1){
       this.head = null;
@@ -118,7 +118,7 @@ class LinkedList {
   getAt(idx) {
 	let currNode = this.head;
     let currIdx = 0;
-    if(currNode === null || idx >= this.length || idx < 0) return `idx out of range`
+    if(currNode === null || idx >= this.length || idx < 0) throw new Error(`idx out of range`);
     while(idx < this.length){
     	if(currIdx === idx) return currNode.val;
       
@@ -132,7 +132,7 @@ class LinkedList {
   setAt(idx, val) {
 	let currNode = this.head;
     let currIdx = 0;
-    if(currNode === null || idx >= this.length || idx < 0) return `idx out of range`
+    if(currNode === null || idx >= this.length || idx < 0) throw new Error(`idx out of range`);
     while(idx < this.length){
     	if(currIdx === idx){
       	 currNode.val = val;
@@ -149,7 +149,7 @@ class LinkedList {
 
   insertAt(idx, val) {
   	const newNode = new Node(val);
-  	if(idx < 0 || idx >= this.length) return 'idx out of range'; //doesn't work with empty linkedlist;see **
+  	if(idx < 0 || idx >= this.length) throw new Error('idx out of range'); //doesn't work with empty linkedlist;see **
     
     if(this.length === 1){//for edge case inserting at head, and length = 1;
     	this.head = newNode;
@@ -185,7 +185,7 @@ class LinkedList {
   /** removeAt(idx): return & remove item at idx, */
 
   removeAt(idx) {//not working for [1,2] ll,  input: idx = 0
-	if(idx < 0 || idx >= this.length) return 'idx out of range'; //doesn't work with empty linkedlist
+	if(idx < 0 || idx >= this.length) throw new Error('idx out of range'); //doesn't work with empty linkedlist
     
     const prevIdx = idx <= 0 ? 0 : idx - 1; //if === 0, set to 0
     const nextIdx = idx >= this.length - 1 ? this.length - 1 : idx + 1;
