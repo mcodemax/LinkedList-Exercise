@@ -77,7 +77,7 @@ class LinkedList {
 			this.head = null;
 			this.tail = null;
 			this.length = 0;
-			return remNode;
+			return remNode.val;
 		}
 
 		const removedNode = this.tail;
@@ -85,32 +85,32 @@ class LinkedList {
 		this.tail = endNode;
 		this.length--;
 
-		return removedNode;
+		return removedNode.val;
  	 }
 
   /** shift(): return & remove first item. */
 
   shift() {
-	const shiftedNode = this.head;
+    const shiftedNode = this.head;
 
-	if(this.length === 0) throw new Error('LinkedList Empty');
-    
-    if(this.length === 1){
-      this.head = null;
-      this.tail = null;
-      length--;
+    if(this.length === 0) throw new Error('LinkedList Empty');
       
-      return shiftedNode;
-    }
-    
-    this.head = shiftedNode.next;
-		shiftedNode.next = null;
-    
-    if(this.head.next === null) this.tail = this.head; //if only 1 node left
-    
-    this.length--;
-    
-    return shiftedNode;
+      if(this.length === 1){
+        this.head = null;
+        this.tail = null;
+        this.length--;
+        
+        return shiftedNode.val;
+      }
+      
+      this.head = shiftedNode.next;
+      shiftedNode.next = null;
+      
+      if(this.head.next === null) this.tail = this.head; //if only 1 node left
+      
+      this.length--;
+      
+      return shiftedNode.val;
   }
 
   /** getAt(idx): get val at idx. */
@@ -149,7 +149,6 @@ class LinkedList {
 
   insertAt(idx, val) {
   	const newNode = new Node(val);
-  	if(idx < 0 || idx >= this.length) throw new Error('idx out of range'); //doesn't work with empty linkedlist;see **
     
     if(this.length === 1){//for edge case inserting at head, and length = 1;
     	this.head = newNode;
@@ -159,19 +158,22 @@ class LinkedList {
       return;
     }
     
-    if(this.length === 0){//for edge case inserting into empty linkedlist; **
+    if(this.length === 0){//for edge case inserting into empty linkedlist
     	this.head = newNode;
       this.tail = newNode;
       this.length++;
       
       return;
     }
+
+    if(idx < 0 || idx >= this.length) throw new Error('idx out of range'); 
     
 		const prevIdx = idx <= 0 ? 0 : idx - 1; //if === 0, set to 0
-    const nextIdx = idx >= this.length - 1 ? this.length - 1 : idx + 1;
+    const nextIdx = idx >= this.length - 1 ? this.length - 1 : idx;
     //const 
     const prevNode = this._getAt(prevIdx);
     const nextNode = this._getAt(nextIdx);
+    
     
     //if nextNode =(obj comparison) prevNode > do something
     //implement edge case later
@@ -222,19 +224,21 @@ class LinkedList {
 
   /** average(): return an average of all values in the list */
 
-   average() {
+  average() {
     let currNode = this.head;
     let currIdx = 0;
-		let sum = 0;
-    if(this.length === 0) return `Linked List is empty`
+    let sum = 0;
+  
+    if(this.length === 0) return 0;
+  
     while(currIdx < this.length){
-			sum+=currNode.val;
+      sum+=currNode.val;
       
-     	currNode = currNode.next;
-			currIdx++;
-     }
+      currNode = currNode.next;
+      currIdx++;
+    }
 
-	return sum / this.length;
+    return sum / this.length;
   }
 }
 

@@ -101,7 +101,7 @@ describe("insertAt", function() {
   it("inserts node and adjusts nearby nodes", function() {
     let lst = new LinkedList([5, 10, 15, 20]);
 
-    lst.insertAt(2, 12);
+    lst.insertAt(2, 12); //[5,10,12,15,20]
     expect(lst.length).toBe(5);
     expect(lst.head.val).toBe(5);
     expect(lst.head.next.val).toBe(10);
@@ -109,9 +109,9 @@ describe("insertAt", function() {
     expect(lst.head.next.next.next.val).toBe(15);
     expect(lst.head.next.next.next.next.val).toBe(20);
 
-    lst.insertAt(5, 25);
-    expect(lst.head.next.next.next.next.next.val).toBe(25);
-    expect(lst.tail.val).toBe(25);
+    lst.insertAt(4, 25); //[5,10,12, 25, 15,20]
+    expect(lst.head.next.next.next.next.next.val).toBe(20);
+    expect(lst.tail.val).toBe(20);
   });
 
   it("inserts into empty list", function() {
